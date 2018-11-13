@@ -143,7 +143,7 @@ struct FSearchStrings
 
 
 UCLASS(transient, Blueprintable, hideCategories = AnimInstance, BlueprintType)
-class UBodyStateAnimInstance : public UAnimInstance
+class BODYSTATE_API UBodyStateAnimInstance : public UAnimInstance
 {
 public:
 	GENERATED_UCLASS_BODY()
