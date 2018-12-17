@@ -10,7 +10,7 @@
 * Useful global blueprint functions for Leap Motion
 */
 UCLASS()
-class ULeapBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
+class LEAPMOTION_API ULeapBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
