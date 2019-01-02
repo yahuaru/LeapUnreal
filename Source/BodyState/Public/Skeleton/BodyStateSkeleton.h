@@ -31,6 +31,35 @@ struct BODYSTATE_API FKeyedTransform
 
 	UPROPERTY()
 	EBodyStateBasicBoneType Name;
+
+	bool NetSerialize(FArchive &Ar, class UPackageMap *Map, bool &bOutSuccess)
+	{
+		bOutSuccess = true;
+
+		FVector_NetQuantize10 Location = Transform.GetLocation();
+		FQuat Rotation = Transform.GetRotation();
+
+		Ar << Location;
+		Ar << Rotation;
+		Ar << Name;
+
+		if (Ar.IsLoading())
+		{
+			Transform.SetLocation(Location);
+			Transform.SetRotation(Rotation);
+		}
+
+		return bOutSuccess;
+	}
+};
+
+template<>
+struct TStructOpsTypeTraits<FKeyedTransform> : public TStructOpsTypeTraitsBase2<FKeyedTransform>
+{
+	enum
+	{
+		WithNetSerializer = true
+	};
 };
 
 //Used for replication
